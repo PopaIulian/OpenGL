@@ -63,8 +63,16 @@ void COpenGLMFCDialogDlg::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(COpenGLMFCDialogDlg, CDialogEx)
 	ON_WM_SYSCOMMAND()
-	ON_WM_PAINT()
+//	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
+	ON_BN_CLICKED(IDCANCEL, &COpenGLMFCDialogDlg::OnBnClickedCancel)
+	ON_BN_CLICKED(IDOK, &COpenGLMFCDialogDlg::OnBnClickedOk)
+	ON_WM_PAINT()
+	ON_WM_CREATE()
+	ON_WM_SIZE()
+	ON_WM_TIMER()
+	ON_WM_MOUSEMOVE()
+//	ON_WM_CLOSE()
 END_MESSAGE_MAP()
 
 
@@ -99,7 +107,19 @@ BOOL COpenGLMFCDialogDlg::OnInitDialog()
 	SetIcon(m_hIcon, TRUE);			// Set big icon
 	SetIcon(m_hIcon, FALSE);		// Set small icon
 
-	// TODO: Add extra initialization here
+	CRect rect;
+
+	// Get size and position of the picture control
+	GetDlgItem(IDC_OPENGL)->GetWindowRect(rect);
+
+	// Convert screen coordinates to client coordinates
+	ScreenToClient(rect);
+
+	// Create OpenGL Control window
+	m_oglWindow.oglCreate(rect, this);
+
+	// Setup the OpenGL Window's timer to render
+	m_oglWindow.m_unpTimer = m_oglWindow.SetTimer(1, 1, 0);
 
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
@@ -116,6 +136,7 @@ void COpenGLMFCDialogDlg::OnSysCommand(UINT nID, LPARAM lParam)
 		CDialogEx::OnSysCommand(nID, lParam);
 	}
 }
+
 
 // If you add a minimize button to your dialog, you will need the code below
 //  to draw the icon.  For MFC applications using the document/view model,
@@ -152,4 +173,20 @@ HCURSOR COpenGLMFCDialogDlg::OnQueryDragIcon()
 {
 	return static_cast<HCURSOR>(m_hIcon);
 }
+
+
+
+void COpenGLMFCDialogDlg::OnBnClickedCancel()
+{
+	// TODO: Add your control notification handler code here
+	CDialogEx::OnCancel();
+}
+
+
+void COpenGLMFCDialogDlg::OnBnClickedOk()
+{
+	// TODO: Add your control notification handler code here
+	CDialogEx::OnOK();
+}
+
 

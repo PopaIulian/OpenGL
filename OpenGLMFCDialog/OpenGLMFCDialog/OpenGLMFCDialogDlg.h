@@ -4,11 +4,13 @@
 
 #pragma once
 
+#include "COpenGLControl.h"
+
 
 // COpenGLMFCDialogDlg dialog
 class COpenGLMFCDialogDlg : public CDialogEx
 {
-// Construction
+	// Construction
 public:
 	COpenGLMFCDialogDlg(CWnd* pParent = nullptr);	// standard constructor
 
@@ -17,7 +19,7 @@ public:
 	enum { IDD = IDD_OPENGLMFCDIALOG_DIALOG };
 #endif
 
-	protected:
+protected:
 	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV support
 
 
@@ -31,4 +33,12 @@ protected:
 	afx_msg void OnPaint();
 	afx_msg HCURSOR OnQueryDragIcon();
 	DECLARE_MESSAGE_MAP()
+
+
+public:
+	afx_msg void OnBnClickedCancel();
+	afx_msg void OnBnClickedOk();
+
+private:
+	COpenGLControl m_oglWindow;
 };
