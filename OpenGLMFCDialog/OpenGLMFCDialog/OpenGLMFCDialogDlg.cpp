@@ -63,16 +63,14 @@ void COpenGLMFCDialogDlg::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(COpenGLMFCDialogDlg, CDialogEx)
 	ON_WM_SYSCOMMAND()
-//	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
-	ON_BN_CLICKED(IDCANCEL, &COpenGLMFCDialogDlg::OnBnClickedCancel)
-	ON_BN_CLICKED(IDOK, &COpenGLMFCDialogDlg::OnBnClickedOk)
+	//ON_BN_CLICKED(IDCANCEL, &COpenGLMFCDialogDlg::OnBnClickedCancel)
+	//ON_BN_CLICKED(IDOK, &COpenGLMFCDialogDlg::OnBnClickedOk)
 	ON_WM_PAINT()
-	ON_WM_CREATE()
-	ON_WM_SIZE()
-	ON_WM_TIMER()
-	ON_WM_MOUSEMOVE()
-//	ON_WM_CLOSE()
+	//ON_WM_CREATE()
+	//ON_WM_SIZE()
+	//ON_WM_TIMER()
+	//ON_WM_MOUSEMOVE()
 END_MESSAGE_MAP()
 
 
@@ -116,10 +114,11 @@ BOOL COpenGLMFCDialogDlg::OnInitDialog()
 	ScreenToClient(rect);
 
 	// Create OpenGL Control window
-	m_oglWindow.oglCreate(rect, this);
+	m_oglWindow.OglCreate(rect, this);
 
 	// Setup the OpenGL Window's timer to render
-	m_oglWindow.m_unpTimer = m_oglWindow.SetTimer(1, 1, 0);
+	auto& times = m_oglWindow.GetTimer();
+	times = m_oglWindow.SetTimer(1, 1, 0);
 
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }

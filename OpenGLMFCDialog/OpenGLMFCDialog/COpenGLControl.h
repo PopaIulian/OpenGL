@@ -8,10 +8,11 @@ class COpenGLControl : public CWnd
 public:
 	COpenGLControl();
 
-	void oglCreate(CRect rect, CWnd *parent);
-	void oglInitialize(void);
+	void OglCreate(CRect rect, CWnd *parent);
+	void OglInitialize(void);
 	afx_msg void OnDraw(CDC *pDC);
-	void oglDrawScene(void);
+	void OglDrawScene(void);
+	UINT_PTR&  GetTimer() { return m_unpTimer; }
 
 	DECLARE_MESSAGE_MAP()
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
@@ -20,25 +21,9 @@ public:
 	afx_msg void OnSize(UINT nType, int cx, int cy);
 	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
 
-public:
-	/******************/
-	/* PUBLIC MEMBERS */
-	/******************/
+private:
 	// Timer
 	UINT_PTR m_unpTimer;
-
-	float m_fLastX;
-	float m_fLastY;
-	float m_fRotX;
-	float m_fRotY;
-	float m_fZoom;
-	float m_fPosX;
-	float m_fPosY;
-
-private:
-	/*******************/
-	/* PRIVATE MEMBERS */
-	/*******************/
 	// Window information
 	CWnd    *hWnd;
 	HDC     hdc;
@@ -48,5 +33,13 @@ private:
 	CRect   m_oldWindow;
 	CRect   m_originalRect;
 
+	//Coordinate
+	float m_fLastX;
+	float m_fLastY;
+	float m_fRotX;
+	float m_fRotY;
+	float m_fZoom;
+	float m_fPosX;
+	float m_fPosY;
 };
 

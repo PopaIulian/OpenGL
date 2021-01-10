@@ -17,7 +17,7 @@ COpenGLControl::COpenGLControl(void)
 	m_fRotY = 0.0f;    // Rotation on model in camera view
 }
 
-void COpenGLControl::oglCreate(CRect rect, CWnd *parent)
+void COpenGLControl::OglCreate(CRect rect, CWnd *parent)
 {
 	CString className = AfxRegisterWndClass(CS_HREDRAW |
 		CS_VREDRAW | CS_OWNDC, NULL,
@@ -33,7 +33,7 @@ void COpenGLControl::oglCreate(CRect rect, CWnd *parent)
 	hWnd = parent;
 }
 
-void COpenGLControl::oglInitialize(void)
+void COpenGLControl::OglInitialize(void)
 {
 	// Initial Setup:
 	//
@@ -63,7 +63,7 @@ void COpenGLControl::oglInitialize(void)
 	// Basic Setup:
 	//
 	// Set color to use when clearing the background.
-	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);//ejrf///////////////////===========================================================
 	glClearDepth(1.0f);
 
 	// Turn on backface culling
@@ -87,7 +87,7 @@ void COpenGLControl::OnDraw(CDC *pDC)
 	glRotatef(m_fRotY, 0.0f, 1.0f, 0.0f);
 }
 
-void COpenGLControl::oglDrawScene(void)
+void COpenGLControl::OglDrawScene(void)
 {
 	// Wireframe Mode
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -139,7 +139,7 @@ int COpenGLControl::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	if (CWnd::OnCreate(lpCreateStruct) == -1)
 		return -1;
 
-	oglInitialize();
+	OglInitialize();
 
 	return 0;
 
@@ -183,7 +183,7 @@ void COpenGLControl::OnTimer(UINT_PTR nIDEvent)
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	// Draw OpenGL scene
-	oglDrawScene();
+	OglDrawScene();
 
 	// Swap buffers
 	SwapBuffers(hdc);
